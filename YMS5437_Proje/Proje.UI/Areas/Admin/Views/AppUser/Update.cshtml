@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@model Proje.Service.Service.DTO.AppUserDTO
+<form action="/Admin/AppUser/Update" method="post" enctype="multipart/form-data">
+
+    <div class="form-group">
+        <img class="img-rounded" src="@Model.ImagePath" height="150" />
+    </div>
+    <div class="form-group">
+        <label for="Name">Fotoğraf Seçiniz</label>
+        <input type="file" name="Image" class="form-control" />
+    </div>
+
+
+
+    <div class="form-group">
+        <label for="Name">Adı</label>
+        <input type="text" name="Name" value="@Model.Name" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="Name">Soyadı</label>
+        <input type="text" name="LastName" value="@Model.LastName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="Name">Kullanıcı Adı</label>
+        <input type="text" name="UserName" value="@Model.UserName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="Name">Adres</label>
+        <input type="text" name="Address" value="@Model.Address" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="Name">Email</label>
+        <input type="text" name="Email" value="@Model.Email" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="Name">Şifre</label>
+        <input type="text" name="Password" value="@Model.Password" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="Name">Rolü : @Model.Role.ToString()</label>
+        <select name="Role" class="form-control">
+            @foreach (var item in Enum.GetNames(typeof(Proje.Model.Model.Entities.Role)))
+            {
+                <option value="@item">@item</option>
+            }
+        </select>
+    </div>
+    @Html.HiddenFor(x => x.ID)
+
+
+    <input type="submit" value="Güncelle" class="form-control btn btn-primary" />
+</form>
+
+
+

@@ -1,0 +1,12 @@
+C:\Users\cn_og\Dropbox\YMS5437\Proje\YMS5437_Proje\Proje.Utility\bin\Debug\Proje.Utility.dll.config
+C:\Users\cn_og\Dropbox\YMS5437\Proje\YMS5437_Proje\Proje.Utility\bin\Debug\Proje.Utility.dll
+C:\Users\cn_og\Dropbox\YMS5437\Proje\YMS5437_Proje\Proje.Utility\bin\Debug\Proje.Utility.pdb
+C:\Users\cn_og\Dropbox\YMS5437\Proje\YMS5437_Proje\Proje.Utility\bin\Debug\EntityFramework.dll
+C:\Users\cn_og\Dropbox\YMS5437\Proje\YMS5437_Proje\Proje.Utility\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\cn_og\Dropbox\YMS5437\Proje\YMS5437_Proje\Proje.Utility\bin\Debug\EntityFramework.xml
+C:\Users\cn_og\Dropbox\YMS5437\Proje\YMS5437_Proje\Proje.Utility\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\cn_og\Dropbox\YMS5437\Proje\YMS5437_Proje\Proje.Utility\obj\Debug\Proje.Utility.csprojAssemblyReference.cache
+C:\Users\cn_og\Dropbox\YMS5437\Proje\YMS5437_Proje\Proje.Utility\obj\Debug\Proje.Utility.csproj.CoreCompileInputs.cache
+C:\Users\cn_og\Dropbox\YMS5437\Proje\YMS5437_Proje\Proje.Utility\obj\Debug\Proje.Utility.csproj.CopyComplete
+C:\Users\cn_og\Dropbox\YMS5437\Proje\YMS5437_Proje\Proje.Utility\obj\Debug\Proje.Utility.dll
+C:\Users\cn_og\Dropbox\YMS5437\Proje\YMS5437_Proje\Proje.Utility\obj\Debug\Proje.Utility.pdb

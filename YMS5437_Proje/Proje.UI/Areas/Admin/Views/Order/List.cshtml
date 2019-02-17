@@ -1,0 +1,41 @@
+﻿@using PagedList
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@model IPagedList<Proje.Model.Model.Entities.Order>
+
+
+<div class="col-md-12">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Sipariş Kodu</th>
+                <th>Müşteri Kullanıcı Adı</th>
+                <th>Müşteri Email</th>
+                <th colspan="2">Sipariş Detay</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ID</td>
+                    <td>@item.AppUser.UserName</td>
+                    <td>@item.AppUser.Email</td>
+                    <td>
+                        <a href="/Admin/Order/Detail/@item.ID">Sipariş Detayı</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="pagedList">
+        @Html.PagedListPager(Model,page=>Url.Action("List","Order",new { page}),PagedListRenderOptions.Classic)
+    </div>
+</div>
+
+

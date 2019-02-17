@@ -1,0 +1,93 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<Proje.Model.Model.Entities.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row" style="margin-top:50px;">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="col-lg-12">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Ad</th>
+                            <th>Fiyat</th>
+                            <th>Detay</th>
+                            <th>İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td style="line-height:40px;">@item.Name</td>
+                                <td style="line-height:40px;">@item.Price</td>
+                                <td style="line-height:40px;"><a href="@Url.Action("Detail","Product",new { id=item.ID})">Detay Görüntüle</a></td>
+                                <td style="line-height:40px;">
+
+                                    <a href="javascript:void(0)" class="add-to-cart">
+                                        <img src="@item.ImagePath" class="btnCart" val="@item.ID" width="40" height="40" data-toggle="tooltip" data-placement="right" title="@item.Name -  Sepete Ekle" />
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="pagedList">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), PagedListRenderOptions.Classic)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section TOP_JS_SECTION{
+    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+
+    <script>
+        //İmage title bölümü "tooltip" ipucu görüntüsü ile ekrana gelir(siyah kutu içerisinde)
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+
+        //javascript:void(0) bu kdu tarayıcı gördüğünde hiçbir şey yapmaması gerektiğini anlar. Void(0) null dönen bir metottur.
+        $(document).ready(function () {
+
+            $(".add-to-cart").on("click", function () {
+                //Sepet görselinin yukarıda bulunan sepete uçması için animasyon oluşturuyoruz.
+                $('html', 'body').animate({
+                    'scrollTop': $('.cart_anchor').position().tops
+                });
+                //Tıklanmış olan elementin bir dış taginden itibaren ilk bulduğu yani sıfırıncı indexteki img dosyasını teslim eder. Yani tıklananı yakalar :)
+                var itemImg = $(this).parent().find('img').eq(0);
+                flyToElement($(itemImg), $('.cart_anchor'));
+            })
+        });
+    </script>
+
+}
+
+@section BOTTOM_JS_SECTION{
+    <script>
+        //Herhangi bir sepete tıklandığında ürünümüzü Ajax ile sepete ekleyeceğiz.
+        $(".btnCart").click(function () {
+
+            //Tıklanan ürünün id'sini yakalıyoruz.
+            var id = $(this).attr("val");
+
+            //Cart controller da bulunan Add metoduna sepete eklenen ürünün id'sini gönderiyoruz.
+            $.ajax({
+                type: "POST",
+                dataType: "Json",
+                url: "@Url.Action("Add","Cart")/" + id,
+                success: function (data) {
+                    console.log(data);
+                }
+
+            })
+        })
+    </script>
+}

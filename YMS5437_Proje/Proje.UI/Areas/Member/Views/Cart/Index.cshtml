@@ -1,0 +1,123 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row" style="margin-top:50px;">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="col-lg-12">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Ürün ID</th>
+                            <th>Ürün Ad</th>
+                            <th>Fiyat</th>
+                            <th>Adet</th>
+                            <th>Toplam Fiyat</th>
+                            <th>İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @*<tr><td style="line-height:40px;">PRODUCT_ID</td><td style="line-height:40px;">PRODUCT_NAME</td><td style="line-height:40px;">PRODUCT_UNITPRICE</td><td style="line-height:40px;">PRODUCT_STOCK</td><td style="line-height:40px;">PRODUCT_ADET</td><td style="line-height:40px;">PRODUCT_TUTAR</td><td style="line-height:40px;"><img onclick="" width="40" height="40" data-toggle="tooltip" data-placement="right" title="Arttır" src="~/Content/images/Add.png" /><img onclick="" width="40" height="40" data-toggle="tooltip" data-placement="right" title="Azalt" src="~/Content/images/Remove.png" /><img onclick="" width="40" height="40" data-toggle="tooltip" data-placement="right" title="Sil" src="~/Content/images/Shopping.png" /></td></tr>*@
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="col-lg-6 col-lg-offset-6">
+                <label>Ödemeniz gereken toplam tutar : <span id="totalAmount"></span> $</label>
+            </div>
+        </div>
+    </div>
+    <a class="btn btn-primary btn-block" href="@Url.Action("Add","Order",new { area="Member"})">Siparişi Tamamla!</a>
+</div>
+
+
+
+@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+<script>
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+
+
+    $(document).ready(function () {
+
+        //Sayfa yüklendikten yarım saniye sonra istekte bulunarak tablo içerisini dolduracaktır.
+        setTimeout(function () { $.Cart.List() },500);
+
+        //Cart objesine list add remove gibi metodlar ekliyoruz.
+        $.Cart = {
+            //List metodu içerisinde Cart controller'dan List metoduna get isteği yapıyoruz. Dönen değeri data adı altında yakalıyoruz.
+            List: function () {
+                $.getJSON("@Url.Action("List","Cart")", function (data) {
+                    //Tablonun içerisini temizliyoruz
+                    $("table tbody tr").remove();
+                    //Eleman sayısını datadan yakalar.
+                    var count = Object.keys(data).length;
+                    //Toplam tutarı tutacağım değişkeni açıyorum.
+                    var totalAmount = 0;
+                    if (count > 0) {
+                        //$.each c#taki foreach ile aynıdır. key değerini kullanmanıza gerek yoktur. Onun bulunması dictionary yani sözlük tarzı anahtar değer ikilisi kullanan koleksiyon yapıları içindir.
+                        $.each(data, function (key, item) {
+                            //append işlemi sayesinde belirli bir html kodunu sayfanın belli bir bölgesine gömebilirsiniz. Anlık atamasını gerçekleştirebilirsiniz.
+                          
+                            $("table tbody").append(`<tr><td style='line-height:40px;'>
+${item.ID} </td><td style='line-height:40px;'>
+${item.ProductName} </td><td style='line-height:40px;'>
+${item.UnitPrice} </td><td style='line-height:40px;'>
+${item.Quantity} </td><td style='line-height:40px;'>
+${item.Quantity * item.UnitPrice}</td><td style='line-height:40px;'><img onclick='$.Cart.Increase(" ${item.ID} ")' width='40' height='40' data-toggle='tooltip' data-placement='right' title='Arttır' src='/Areas/Member/Content/images/Add.png' /><img onclick='$.Cart.Decrease(" ${item.ID} ")' width='40' height='40' data-toggle='tooltip' data-placement='right' title='Azalt' src='/Areas/Member/Content/images/Remove.png' /><img onclick='$.Cart.Remove(" ${item.ID} ")' width='40' height='40' data-toggle='tooltip' data-placement='right' title='Sil' src='/Areas/Member/Content/images/Shopping.png' /></td></tr>`)
+                            totalAmount += (item.Quantity * item.UnitPrice);
+                        });
+                    }
+                    $("#totalAmount").html(totalAmount);
+                });
+            },//Cart nesnesinin alttaki metodu sayesinde kullanıcı listede bulunan ürünün adedini 1 tane arttırabilir. Ajax(Asenkron javascript ve xml) isteği sayesinde sayfa yenilenmeden bu istek arka planda çalışıp gerçekleştirilecektir.
+            Increase: function (Id) {
+                $.ajax({
+                    type: "POST",
+                    dataType: "Json",
+                    url: "@Url.Action("IncreaseCart","Cart")/" + Id,
+                    success: function (data) {
+                        //dönen veri ile bir işimiz yok zaten boş string gönderdik.
+                        //Ekleme yapılınca yeniden listele;
+                        $.Cart.List();
+                    }
+                })
+            },//Cart nesnesinin alttaki metodu sayesinde kullanıcı listede bulunan ürünün adedini 1 tane azaltabilir. Ajax(Asenkron javascript ve xml) isteği sayesinde sayfa yenilenmeden bu istek arka planda çalışıp gerçekleştirilecektir.
+             Decrease: function (Id) {
+                $.ajax({
+                    type: "POST",
+                    dataType: "Json",
+                    url: "@Url.Action("DecreaseCart", "Cart")/" + Id,
+                    success: function (data) {
+                        $.Cart.List();
+                    }
+                })
+            },//Cart nesnesinin alttaki metodu sayesinde kullanıcı listede bulunan ürünlerden birini sepetten kaldırabilir. Ajax(Asenkron javascript ve xml) isteği sayesinde sayfa yenilenmeden bu istek arka planda çalışıp gerçekleştirilecektir.
+              Remove: function (Id) {
+                $.ajax({
+                    type: "POST",
+                    dataType: "Json",
+                    url: "@Url.Action("Remove", "Cart")/" + Id,
+                    success: function (data) {
+                        $.Cart.List();
+                    }
+                })
+            }
+
+        }
+
+    });
+</script>
+
+<style type="text/css">
+    img:hover {
+        cursor: pointer;
+    }
+</style>

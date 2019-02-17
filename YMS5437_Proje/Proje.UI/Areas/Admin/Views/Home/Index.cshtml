@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@*<h2>Merhaba @HttpContext.Current.User.Identity.Name.Split('@')[0]</h2>*@
+
+@{
+    Html.RenderAction("OrderCount", "Report");
+}
+
+@{
+    Html.RenderAction("MemberCount", "Report");
+}
+@{
+    Html.RenderAction("ProductCount", "Report");
+
+}
+@{
+    Html.RenderAction("CategoryCount", "Report");
+}

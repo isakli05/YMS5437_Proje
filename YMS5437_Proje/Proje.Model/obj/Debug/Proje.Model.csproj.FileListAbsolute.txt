@@ -1,0 +1,15 @@
+C:\Users\cn_og\Dropbox\YMS5437\Proje\YMS5437_Proje\Proje.Model\bin\Debug\Proje.Model.dll.config
+C:\Users\cn_og\Dropbox\YMS5437\Proje\YMS5437_Proje\Proje.Model\bin\Debug\Proje.Model.dll
+C:\Users\cn_og\Dropbox\YMS5437\Proje\YMS5437_Proje\Proje.Model\bin\Debug\Proje.Model.pdb
+C:\Users\cn_og\Dropbox\YMS5437\Proje\YMS5437_Proje\Proje.Model\bin\Debug\EntityFramework.dll
+C:\Users\cn_og\Dropbox\YMS5437\Proje\YMS5437_Proje\Proje.Model\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\cn_og\Dropbox\YMS5437\Proje\YMS5437_Proje\Proje.Model\bin\Debug\Proje.Core.dll
+C:\Users\cn_og\Dropbox\YMS5437\Proje\YMS5437_Proje\Proje.Model\bin\Debug\Proje.Core.pdb
+C:\Users\cn_og\Dropbox\YMS5437\Proje\YMS5437_Proje\Proje.Model\bin\Debug\Proje.Core.dll.config
+C:\Users\cn_og\Dropbox\YMS5437\Proje\YMS5437_Proje\Proje.Model\bin\Debug\EntityFramework.xml
+C:\Users\cn_og\Dropbox\YMS5437\Proje\YMS5437_Proje\Proje.Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\cn_og\Dropbox\YMS5437\Proje\YMS5437_Proje\Proje.Model\obj\Debug\Proje.Model.csprojAssemblyReference.cache
+C:\Users\cn_og\Dropbox\YMS5437\Proje\YMS5437_Proje\Proje.Model\obj\Debug\Proje.Model.csproj.CoreCompileInputs.cache
+C:\Users\cn_og\Dropbox\YMS5437\Proje\YMS5437_Proje\Proje.Model\obj\Debug\Proje.Model.csproj.CopyComplete
+C:\Users\cn_og\Dropbox\YMS5437\Proje\YMS5437_Proje\Proje.Model\obj\Debug\Proje.Model.dll
+C:\Users\cn_og\Dropbox\YMS5437\Proje\YMS5437_Proje\Proje.Model\obj\Debug\Proje.Model.pdb
